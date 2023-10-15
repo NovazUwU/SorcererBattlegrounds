@@ -1,0 +1,22 @@
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local Character = Player.Character or (Player.CharacterAdded:Wait() and Player.Character)
+local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+local Humanoid = Character:WaitForChild("Humanoid")
+
+Player.CharacterAdded:Connect(function(Char)
+    Character = Char 
+    HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
+    Humanoid = Character:WaitForChild("Humanoid")
+end)
+
+while true do 
+    pcall(function()
+        local ERP = Players[MainAccount].Character.HumanoidRootPart.CFrame
+        HumanoidRootPart.CFrame = ERP + ERP.LookVector * 6 
+    end)
+    if Humanoid.Health <= 99 then 
+        Humanoid.Health = 0
+    end 
+    task.wait(0.25)
+end 
